@@ -1,0 +1,18 @@
+version: '3'
+services:
+  db:
+    image: postgres:9.6.16
+    container_name: database
+    ports:
+      - 5433:5432
+    environment:
+      POSTGRES_USER: docker
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: demo
+
+  dbcontroller:
+    build: .
+    ports:
+      - 8080:8080
+    depends_on:
+      - db
